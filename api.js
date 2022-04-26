@@ -37,7 +37,7 @@ app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`)
 })
 
-// client.connect()
+client.connect()
 
 app.get("/" , (req, res) => {
     res.send("Go to /states")
