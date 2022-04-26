@@ -82,7 +82,7 @@ app.get("/agreements", (req, res) => {
     } else {
       res.send(result.rows)
     }
-  }))
+  })
 })
 
 // To get a particular agreement
