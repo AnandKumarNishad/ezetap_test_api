@@ -103,7 +103,7 @@ app. get("/agreements/:aggrement_id", (req, res) => {
 })
 
 // To update the agreement text of a particular agreement
-app.put("agreement/:agreement_id", (req, res) => {
+app.put("agreements/:agreement_id", (req, res) => {
   const agreement_id = req.params.agreement_id
   const { agreementText } = req.body
   client.query(
