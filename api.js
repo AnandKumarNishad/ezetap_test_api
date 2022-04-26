@@ -101,6 +101,22 @@ app.get("/agreements", (req, res) => {
   })
 })
 
+// To create a agreement
+app.post("/agreements", (req, res) => {
+  const { agreementText, agreementCode, orgCode } = req.body
+  client.query(
+    `INSERT INTO agreements (agreementText, agreementCode, orgCode) VALUES ('${agreementText}', '${agreementCode}', '${orgCode}')`,
+    (err, result) => {
+      if(err) {
+        console.log(err)
+        res.sendStatus(500)
+      } else {
+        res.sendStatus(201)
+      }
+    }
+  )
+})
+
 // To get a particular agreement
 app. get("/agreements/:aggrement_id", (req, res) => {
   client.query(
