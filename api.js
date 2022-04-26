@@ -69,3 +69,19 @@ app.get("/users/:user_id", (req, res) => {
     }
     )
   })
+
+app.get("/users/:email", (req, res) => {
+  client.query(
+    `SELECT * FROM users where email = ${req.params.email}`,
+    (err, result) => {
+      if(err){
+        console.log(err)
+        res.sendStatus(500)
+      } else if (result.rows.length === 0) {
+        res.sendStatus(404)
+      } else {
+        res.send(result.rows)
+      }
+    }
+  )
+})
