@@ -1,6 +1,7 @@
 const client = require("./connection");
 const express = require("express");
 const bodyParser = require("body-parser");
+const res = require("express/lib/response");
 
 const app = express()
 app.use(bodyParser.json())
@@ -43,6 +44,7 @@ app.get("/" , (req, res) => {
     res.send("Go to /users")
 })
 
+// To get the detail of all the users
 app.get("/users", (req, res) => {
   client.query("SELECT * FROM users", (err, result) => {
     if (err) {
@@ -54,6 +56,7 @@ app.get("/users", (req, res) => {
   })
 })
 
+// To get a particular user details
 app.get("/users/:user_id", (req, res) => {
   client.query(
     `SELECT * FROM users WHERE id = ${req.params.user_id}`,
@@ -67,17 +70,30 @@ app.get("/users/:user_id", (req, res) => {
         res.send(result.rows)
       }
     }
-    )
-  })
+  )
+})
 
-app.get("/users/:email", (req, res) => {
+// To get all the agreements
+app.get("/agreements", (req, res) => {
+  client.query(`SELECT * FROM agreements`, (err, result => {
+    if (err) {
+      console.log(err)
+      res.sendStatus(500)
+    } else {
+      res.send(result.rows)
+    }
+  }))
+})
+
+// To get a particular agreement
+app. get("/agreements/:aggrement_id", (req, req) => {
   client.query(
-    `SELECT * FROM users where email = ${req.params.email}`,
+    `SELECT * FROM agreements WHERE id = ${req.params.aggrement_id}`,.
     (err, result) => {
       if(err){
         console.log(err)
         res.sendStatus(500)
-      } else if (result.rows.length === 0) {
+      } else if ( result.rows.length === 0) {
         res.sendStatus(404)
       } else {
         res.send(result.rows)
