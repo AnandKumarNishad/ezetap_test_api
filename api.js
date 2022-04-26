@@ -40,16 +40,16 @@ app.listen(PORT, () => {
 client.connect()
 
 app.get("/" , (req, res) => {
-    res.send("Go to /states")
+    res.send("Go to /users")
 })
 
-// app.get("/", (req, res) => {
-//     client.query("SELECT * FROM users", (err, result) => {
-//       if (err) {
-//         console.log(err)
-//         res.sendStatus(500)
-//       } else {
-//         res.send(result.rows)
-//       }
-//     })
-//   })
+app.get("/users", (req, res) => {
+    client.query("SELECT * FROM users", (err, result) => {
+      if (err) {
+        console.log(err)
+        res.sendStatus(500)
+      } else {
+        res.send(result.rows)
+      }
+    })
+  })
