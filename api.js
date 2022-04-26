@@ -44,12 +44,28 @@ app.get("/" , (req, res) => {
 })
 
 app.get("/users", (req, res) => {
-    client.query("SELECT * FROM users", (err, result) => {
-      if (err) {
+  client.query("SELECT * FROM users", (err, result) => {
+    if (err) {
+      console.log(err)
+      res.sendStatus(500)
+    } else {
+      res.send(result.rows)
+    }
+  })
+})
+
+app.get("/states/:user_id", (req, res) => {
+  client.query(
+    `SELECT * FROM states WHERE state_id = ${req.params.user_id}`,
+    (err, result) => {
+      if(err){
         console.log(err)
         res.sendStatus(500)
+      } else if (result.rows.length === 0) {
+        res.sendStatus(404)
       } else {
         res.send(result.rows)
       }
-    })
+    }
+    )
   })
