@@ -75,7 +75,7 @@ app.get("/users/:user_id", (req, res) => {
 
 // To get all the agreements
 app.get("/agreements", (req, res) => {
-  client.query(`SELECT * FROM agreements`, (err, result => {
+  client.query(`SELECT * FROM agreements`, (err, result) => {
     if (err) {
       console.log(err)
       res.sendStatus(500)
