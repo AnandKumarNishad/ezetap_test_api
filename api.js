@@ -107,7 +107,7 @@ app.put("/agreements/:agreement_id", (req, res) => {
   const agreement_id = req.params.agreement_id
   const { agreement_text} = req.body
   client.query(
-    `UPDATE agreements SET agreementtext = ${agreement_text} WHERE id = ${agreement_id}`,
+    `UPDATE agreements SET agreementText = ${agreement_text} WHERE id = ${agreement_id}`,
     (err, result) => {
       if(err){
         console.log(err)
