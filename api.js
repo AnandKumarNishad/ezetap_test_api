@@ -104,10 +104,10 @@ app. get("/agreements/:aggrement_id", (req, res) => {
 
 // To update the agreement text of a particular agreement
 app.put("/agreements/:agreement_id", (req, res) => {
-  const agreement_id = parseInt(req.params.agreement_id)
-  const { agreement_text} = req.body
+  // const agreement_id = parseInt(req.params.agreement_id)
+  const { agreementText } = req.body
   client.query(
-    `UPDATE agreements SET agreementText = ${agreement_text} WHERE id = ${agreement_id}`,
+    `UPDATE agreements SET agreementText = ${agreementText} WHERE id = ${param.req.agreement_id}`,
     (err, result) => {
       if(err){
         console.log(err)
@@ -115,7 +115,7 @@ app.put("/agreements/:agreement_id", (req, res) => {
       } else if (result.rowCount === 0) {
           res.sendStatus(404)
       } else {
-        res.send("Updated");
+        res.send("Agreement Updated");
       }
     }
   )
