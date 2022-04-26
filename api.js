@@ -54,7 +54,7 @@ app.get("/users", (req, res) => {
   })
 })
 
-app.get("/states/:user_id", (req, res) => {
+app.get("/users/:user_id", (req, res) => {
   client.query(
     `SELECT * FROM states WHERE state_id = ${req.params.user_id}`,
     (err, result) => {
