@@ -86,7 +86,7 @@ app.get("/agreements", (req, res) => {
 })
 
 // To get a particular agreement
-app. get("/agreements/:aggrement_id", (req, req) => {
+app. get("/agreements/:aggrement_id", (req, res) => {
   client.query(
     `SELECT * FROM agreements WHERE id = ${req.params.aggrement_id}`,
     (err, result) => {
