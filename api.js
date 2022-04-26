@@ -56,7 +56,7 @@ app.get("/users", (req, res) => {
 
 app.get("/users/:user_id", (req, res) => {
   client.query(
-    `SELECT * FROM states WHERE state_id = ${req.params.user_id}`,
+    `SELECT * FROM states WHERE id = ${req.params.user_id}`,
     (err, result) => {
       if(err){
         console.log(err)
