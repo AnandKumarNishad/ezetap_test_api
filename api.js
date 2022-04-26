@@ -73,6 +73,22 @@ app.get("/users/:user_id", (req, res) => {
   )
 })
 
+// To create a user
+app.post("/users", (req, res) => {
+  const { name, mobileNumber, email, orgCode, username, password } = req.body
+  client.query(
+    `INSERT INTO users (name, mobileNumber, email, orgCode, username, password) VALUES ('${name}', ${mobileNumber}, '${email}', '${orgCode}', '${username}', '${password}')`,
+    (err, result) => {
+      if(err) {
+        console.log(err)
+        res.sendStatus(500)
+      } else {
+        res.sendStatus(201)
+      }
+    }
+  )
+})
+
 // To get all the agreements
 app.get("/agreements", (req, res) => {
   client.query(`SELECT * FROM agreements`, (err, result) => {
@@ -104,8 +120,6 @@ app. get("/agreements/:aggrement_id", (req, res) => {
 
 // To update the agreement text of a particular agreement
 app.put("/agreements/:agreement_id", (req, res) => {
-  // const agreement_id = parseInt(req.params.agreement_id)
-  // console.log(req.body.agreementText)
   const agreementText = req.body.agreementText
   client.query(
     `UPDATE agreements SET agreementText = '${agreementText}' WHERE id = ${req.params.agreement_id}`,
