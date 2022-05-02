@@ -92,7 +92,7 @@ app.post("/users", (req, res) => {
 // To delete a particular user
 app.delete("/users/:user_id", (req, res) => {
   const user_id = req.params.user_id
-  client.query(`DELETE FROM users WHERE user_id = ${user_id}`, (err, result) => {
+  client.query(`DELETE FROM users WHERE id = ${user_id}`, (err, result) => {
     if (err) {
       console.log(err)
       res.sendStatus(500)
@@ -135,7 +135,7 @@ app.post("/agreements", (req, res) => {
 // To delete a particular agreement
 app.delete("/agreements/:agreement_id", (req, res) => {
   const agreement_id = req.params.agreement_id
-  client.query(`DELETE FROM agreements WHERE agreement_id = ${agreement_id}`, (err, result) => {
+  client.query(`DELETE FROM agreements WHERE id = ${agreement_id}`, (err, result) => {
     if (err) {
       console.log(err)
       res.sendStatus(500)
