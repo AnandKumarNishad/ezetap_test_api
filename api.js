@@ -10,6 +10,7 @@ app.use(function (req, res, next) {
   const corsWhiteList = [
     "https://ezetap-test-apis.herokuapp.com",
     "http://localhost:3000",
+    "http://localhost:3001",
     ]
     
   if(corsWhiteList.indexOf(req.headers.origin) !== -1){
